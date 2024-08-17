@@ -1,5 +1,5 @@
-import { APIError } from 'payload/errors';
-import type { Payload, PayloadRequest } from 'payload/types';
+import type { Payload, PayloadRequest } from 'payload';
+import { APIError } from 'payload';
 
 import type { TranslateResolver } from '../resolvers/types';
 import { findEntityWithConfig } from './findEntityWithConfig';
@@ -9,11 +9,11 @@ import { updateEntity } from './updateEntity';
 
 export type TranslateOperationArgs = (
   | {
-      payload: Payload;
-    }
+    payload: Payload;
+  }
   | {
-      req: PayloadRequest;
-    }
+    req: PayloadRequest;
+  }
 ) &
   TranslateArgs;
 
@@ -22,8 +22,8 @@ export const translateOperation = async (args: TranslateOperationArgs) => {
     'req' in args
       ? args.req
       : ({
-          payload: args.payload,
-        } as PayloadRequest);
+        payload: args.payload,
+      } as PayloadRequest);
 
   const { collectionSlug, globalSlug, id, locale, localeFrom, overrideAccess } = args;
 

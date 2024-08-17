@@ -1,6 +1,6 @@
 /* eslint-disable perfectionist/sort-named-exports */
-import type { Plugin } from 'payload/config';
-import { deepMerge } from 'payload/utilities';
+import type { Plugin } from 'payload';
+import { deepMerge } from 'payload';
 
 import { CustomButton } from './client/components/CustomButton';
 import { translations } from './i18n-translations';
@@ -84,6 +84,6 @@ export const translator: (pluginConfig: TranslatorConfig) => Plugin = (pluginCon
           ...deepMerge(config.i18n?.translations ?? {}, translations),
         },
       },
-    };
+    } as typeof config;
   };
 };

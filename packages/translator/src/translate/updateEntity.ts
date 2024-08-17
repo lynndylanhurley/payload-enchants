@@ -1,5 +1,5 @@
-import { APIError } from 'payload/errors';
-import type { PayloadRequest, TypeWithID } from 'payload/types';
+import type { PayloadRequest, TypeWithID } from 'payload';
+import { APIError } from 'payload';
 
 type Args = {
   collectionSlug?: string;
@@ -32,22 +32,22 @@ export const updateEntity = ({
 
   const promise = isGlobal
     ? req.payload.updateGlobal({
-        data,
-        depth,
-        locale,
-        overrideAccess,
-        req,
-        slug: globalSlug as string,
-      })
+      data,
+      depth,
+      locale,
+      overrideAccess,
+      req,
+      slug: globalSlug as string,
+    })
     : req.payload.update({
-        collection: collectionSlug as string,
-        data,
-        depth,
-        id: id as number | string,
-        locale,
-        overrideAccess,
-        req,
-      });
+      collection: collectionSlug as string,
+      data,
+      depth,
+      id: id as number | string,
+      locale,
+      overrideAccess,
+      req,
+    });
 
-  return promise;
+  return promise as Promise<Record<string, unknown> & TypeWithID>;
 };

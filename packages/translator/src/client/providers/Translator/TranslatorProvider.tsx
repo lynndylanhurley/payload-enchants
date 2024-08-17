@@ -1,4 +1,3 @@
-import { toast } from '@payloadcms/ui/elements';
 import { useModal } from '@payloadcms/ui/elements/Modal';
 import { useAllFormFields } from '@payloadcms/ui/forms/Form';
 import { useConfig } from '@payloadcms/ui/providers/Config';
@@ -6,8 +5,9 @@ import { useDocumentInfo } from '@payloadcms/ui/providers/DocumentInfo';
 import { useLocale } from '@payloadcms/ui/providers/Locale';
 import { useTranslation } from '@payloadcms/ui/providers/Translation';
 import { getFormState } from '@payloadcms/ui/utilities/getFormState';
-import { reduceFieldsToValues } from '@payloadcms/ui/utilities/reduceFieldsToValues';
+import { reduceFieldsToValuesWithValidation } from '@payloadcms/ui/utilities/reduceFieldsToValuesWithValidation';
 import { type ReactNode, useMemo, useState } from 'react';
+import { toast } from 'react-toastify'
 
 import type { TranslateResolver } from '../../../resolvers/types';
 import type { TranslateArgs } from '../../../translate/types';
@@ -44,10 +44,12 @@ export const TranslatorProvider = ({ children }: { children: ReactNode }) => {
   const locale = useLocale();
 
   const {
-    admin: { custom },
-    localization,
-    routes: { api },
-    serverURL,
+    config: {
+      admin: { custom },
+      localization,
+      routes: { api },
+      serverURL,
+    }
   } = useConfig();
 
   const apiClient = createClient({ api, serverURL });
@@ -86,7 +88,7 @@ export const TranslatorProvider = ({ children }: { children: ReactNode }) => {
 
     const args: TranslateArgs = {
       collectionSlug,
-      data: reduceFieldsToValues(data, true),
+      data: reduceFieldsToValuesWithValidation(data, true),
       emptyOnly,
       globalSlug,
       id: id === null ? undefined : id,

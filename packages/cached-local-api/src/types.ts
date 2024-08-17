@@ -1,13 +1,14 @@
-import type { GeneratedTypes, Payload } from 'payload';
-import type payload from 'payload';
-import type { Plugin } from 'payload/config';
-import type { PaginatedDocs } from 'payload/database';
 import type {
   CollectionAfterChangeHook,
   CollectionAfterDeleteHook,
+  GeneratedTypes,
   GlobalAfterChangeHook,
+  PaginatedDocs,
+  Payload ,
+  Plugin,
   Where,
-} from 'payload/types';
+} from 'payload';
+import type payload from 'payload';
 
 type Callback = (...args: any[]) => Promise<any>;
 
@@ -46,8 +47,8 @@ export type FindOneArgs<T extends keyof GeneratedTypes['collections']> = {
   value: string;
   // eslint-disable-next-line perfectionist/sort-intersection-types
 } & Omit<Parameters<Find>[0], 'limit' | 'page' | 'pagination' | 'where'> & {
-    collection: T;
-  };
+  collection: T;
+};
 
 export type FindOne = <T extends keyof GeneratedTypes['collections']>(
   args: FindOneArgs<T>,

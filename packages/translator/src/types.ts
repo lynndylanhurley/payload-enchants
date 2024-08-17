@@ -6,7 +6,7 @@ export type TranslatorConfig = {
   /**
    * Collections with the enabled translator in the admin UI
    */
-  collections: (keyof GeneratedTypes['collections'])[];
+  collections: (keyof GeneratedTypes['collectionsUntyped'])[];
   /**
    * Disable the plugin
    */
@@ -14,7 +14,7 @@ export type TranslatorConfig = {
   /**
    * Globals with the enabled translator in the admin UI
    */
-  globals: (keyof GeneratedTypes['globals'])[];
+  globals: (keyof GeneratedTypes['globalsUntyped'])[];
   /**
    * Add resolvers that you want to include, examples on how to write your own in ./plugin/src/resolvers
    */

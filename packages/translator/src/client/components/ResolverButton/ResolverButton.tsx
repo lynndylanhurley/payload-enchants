@@ -1,4 +1,4 @@
-import { Button } from '@payloadcms/ui/elements';
+import { Button } from '@payloadcms/ui';
 import { useTranslation } from '@payloadcms/ui/providers/Translation';
 
 import type { TranslateResolver } from '../../../resolvers/types';

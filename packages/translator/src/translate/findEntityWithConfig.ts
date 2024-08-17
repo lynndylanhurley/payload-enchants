@@ -1,10 +1,12 @@
-import { APIError } from 'payload/errors';
 import type {
   PayloadRequest,
   SanitizedCollectionConfig,
   SanitizedGlobalConfig,
-  TypeWithID,
-} from 'payload/types';
+  TypeWithID
+} from 'payload';
+import {
+  APIError
+} from 'payload';
 
 type Args = {
   collectionSlug?: string;
@@ -46,23 +48,23 @@ export const findEntityWithConfig = async (
 
   const docPromise = isGlobal
     ? payload.findGlobal({
-        depth: 0,
-        locale,
-        overrideAccess,
-        req,
-        slug: args.globalSlug as string,
-      })
+      depth: 0,
+      locale,
+      overrideAccess,
+      req,
+      slug: args.globalSlug as string,
+    })
     : payload.findByID({
-        collection: collectionSlug as string,
-        depth: 0,
-        id: id as number | string,
-        locale,
-        overrideAccess,
-        req,
-      });
+      collection: collectionSlug as string,
+      depth: 0,
+      id: id as number | string,
+      locale,
+      overrideAccess,
+      req,
+    });
 
   return {
     config: entityConfig,
-    doc: await docPromise,
+    doc: await docPromise as Record<string, unknown> & TypeWithID,
   };
 };

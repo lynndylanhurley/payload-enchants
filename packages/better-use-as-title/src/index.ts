@@ -1,7 +1,7 @@
-import type { GeneratedTypes } from 'payload';
-import type { Plugin } from 'payload/config';
-import type { PayloadRequest, TextField } from 'payload/types';
-import { deepMerge } from 'payload/utilities';
+import type { GeneratedTypes, Plugin, PayloadRequest } from 'payload';
+import type { Plugin } from 'payload';
+import type { PayloadRequest, TextField } from 'payload';
+import { deepMerge } from 'payload';
 
 import { InjectCustomUseAsTitle } from './index.client';
 

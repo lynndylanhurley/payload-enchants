@@ -2,7 +2,7 @@
 
 import './styles.scss';
 
-import { useConfig } from '@payloadcms/ui/providers/Config';
+import { useConfig } from '@payloadcms/ui';
 import { useDocumentInfo } from '@payloadcms/ui/providers/DocumentInfo';
 import type { ReactNode } from 'react';
 
@@ -12,9 +12,10 @@ import { ResolverButton } from '../ResolverButton';
 import { TranslatorModal } from '../TranslatorModal';
 
 export const CustomButtonWithTranslator = ({ defaultButton }: { defaultButton: ReactNode }) => {
-  const config = useConfig();
+  const { config } = useConfig();
 
   const { globalSlug, id } = useDocumentInfo();
+
 
   const resolvers = (config.admin?.custom?.translator?.resolvers as TranslateResolver[]) ?? [];
 
